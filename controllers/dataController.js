@@ -3,10 +3,10 @@ const express = require("express");
 var ObjectID = require("mongoose").Types.ObjectId;
 var router = express.Router();
 
-var { PostMessage } = require("../models/postMessage");
+var { Data } = require("../models/dataModel");
 
 router.get("/", (req, res) => {
-  PostMessage.find((err, docs) => {
+  Data.find((err, docs) => {
     if (!err) {
       res.send(docs);
     } else {
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
   });
 
   router.post("/", (req, res) => {
-    var newRecord = new PostMessage({
+    var newRecord = new Data({
       _id: req.body.id,
       FirstName: req.body.FirstName,
       MiddleName: req.body.MiddleName,
@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
       date: req.body.date,
       bio: req.body.bio,
     };
-    PostMessage.findByIdAndUpdate(
+    Data.findByIdAndUpdate(
       req.params.id,
       { $set: updatedRecord },
       { new: true },
@@ -70,7 +70,7 @@ router.get("/", (req, res) => {
     if (!ObjectID.isValid(req.params.id)) {
       return res.status(400).send("no record with given id :" + req.params.id);
     }
-    PostMessage.findByIdAndRemove(req.params.id, (err, docs) => {
+    Data.findByIdAndRemove(req.params.id, (err, docs) => {
       if (!err) {
         res.send(docs);
       } else {

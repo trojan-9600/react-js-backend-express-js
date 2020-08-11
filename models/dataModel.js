@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-var PostMessage = mongoose.model(
-  "PostMessage",
+var Data = mongoose.model(
+  "Data",
   {
     FirstName: { type: String },
     MiddleName: { type: String },
@@ -11,4 +11,4 @@ var PostMessage = mongoose.model(
   },
   "user"
 );
-module.exports = { PostMessage };
+module.exports = { Data };
